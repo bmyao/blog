@@ -1,4 +1,4 @@
-package com.oneself.blog.blogcore;
+package com.oneself.blog.core;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
