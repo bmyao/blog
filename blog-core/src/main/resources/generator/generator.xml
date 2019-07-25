@@ -7,14 +7,15 @@
     <!-- 一、配置数据库连接信息 -->
     <!--targetRuntime=“MyBatis3“可以生成带条件的增删改查 -->
     <!--targetRuntime=“MyBatis3Simple“可以生成基本的增删改查-->
-    <context id="mysql" targetRuntime="MyBatis3Simple">
+    <context id="mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
 
         <!-- 生成的Java文件的编码 -->
         <property name="javaFileEncoding" value="UTF-8"/>
 
         <!-- 阻止生成自动注释 -->
-        <commentGenerator>
+        <commentGenerator type="com.oneself.blog.common.generator.MyCommentGenerator">
             <property name="javaFileEncoding" value="UTF-8"/>
+            <!-- 是否生成注释代时间戳-->
             <property name="suppressDate" value="true"/>
             <!-- true就是去掉注释 -->
             <property name="suppressAllComments" value="false"/>
@@ -25,6 +26,8 @@
                         connectionURL="jdbc:mysql://172.20.200.112:3306/blog"
                         userId="root"
                         password="root">
+            <!-- 逆向修复生成实体类字段不全问题 -->
+            <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
 
         <!-- java类型处理器
@@ -38,7 +41,7 @@
         </javaTypeResolver>
 
         <!-- 二、指定javabean生成的位置 -->
-        <javaModelGenerator targetPackage="com.oneself.blog.article.entity.pojo" targetProject=".\src\main\java">
+        <javaModelGenerator targetPackage="com.oneself.blog.system.user.role.entity.pojo" targetProject=".\src\main\java">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="true" />
             <!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
@@ -46,7 +49,7 @@
         </javaModelGenerator>
 
         <!-- 三、指定sql映射文件生成的位置 -->
-        <sqlMapGenerator targetPackage="com.oneself.blog.article.mapper"  targetProject=".\src\main\resources">
+        <sqlMapGenerator targetPackage="mapper.system.user.role"  targetProject=".\src\main\resources">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
@@ -60,14 +63,14 @@
                 3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
             注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER
         -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.oneself.blog.article.dao" targetProject=".\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.oneself.blog.system.user.role.dao" targetProject=".\src\main\java">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
         <!-- 五、table指定每个表的生成策略 -->
         <!--配置要逆向解析的数据表，tableName对应表名，domainObjectName对应javaBean名-->
-        <table tableName="y_category" domainObjectName="Category"></table>
+        <table tableName="sys_user_role" domainObjectName="UserRole"></table>
 
     </context>
 </generatorConfiguration>

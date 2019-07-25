@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.oneself.blog</groupId>
+    <groupId>com.oneself.blog.common</groupId>
     <artifactId>blog-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 

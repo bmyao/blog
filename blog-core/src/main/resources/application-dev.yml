@@ -89,7 +89,7 @@ mybatis-plus:
     #刷新Mapper，只在开发环境打开
     refresh: true
   # mapper xml实现扫描路径
-  mapper-locations: classpath*:mapper/**/*.xml
+  mapper-locations: classpath*:mapper/**/*.xml,classpath*:mapper/**/**/*.xml,classpath*:mapper/**/**/**/*.xml
   configuration:
     jdbc-type-for-null: null
 
