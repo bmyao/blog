@@ -2,6 +2,7 @@ package com.oneself.blog.system.user.entity.vo;
 
 import com.oneself.blog.common.enums.SexEnum;
 import com.oneself.blog.common.enums.StatusEnum;
+import com.oneself.blog.common.utils.EnumUtils;
 import lombok.Data;
 
 import java.util.Date;
@@ -56,8 +57,16 @@ public class UserInfoVO {
     private String userSex;
 
     /**
+     * 用户性别（ 0:男  1:女  2:保密 ）
+     */
+    private String userSexName;
+
+    /**
      * 用户个性签名
      */
     private String userSignature;
 
+    public String getUserSexName() {
+        return EnumUtils.getByValue(SexEnum.class,userSex).getName();
+    }
 }

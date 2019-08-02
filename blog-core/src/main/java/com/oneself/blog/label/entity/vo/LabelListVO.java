@@ -1,5 +1,7 @@
 package com.oneself.blog.label.entity.vo;
 
+import com.oneself.blog.common.enums.StatusEnum;
+import com.oneself.blog.common.utils.EnumUtils;
 import lombok.Data;
 
 import java.util.Date;
@@ -34,6 +36,11 @@ public class LabelListVO {
     private String lableStatus;
 
     /**
+     * 标签状态（ 0:禁止  1:启用 ）
+     */
+    private String lableStatusName;
+
+    /**
      * 创建人
      */
     private String createUserName;
@@ -52,4 +59,8 @@ public class LabelListVO {
      * 修改时间
      */
     private String udpateTime;
+
+    public String getLableStatusName() {
+        return EnumUtils.getByValue(StatusEnum.class,lableStatus).getName();
+    }
 }

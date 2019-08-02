@@ -7,7 +7,7 @@ package com.oneself.blog.common.enums;
  * @Param 
  * @return 
  **/
-public interface BaseEnum {
-    String getValue();
+public interface BaseEnum<T> {
+    T getValue();
     String getName();
 }

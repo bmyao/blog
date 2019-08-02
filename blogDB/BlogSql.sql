@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2019/7/24 18:15:13                           */
+/* Created on:     2019/8/2 9:54:42                             */
 /*==============================================================*/
 
 
@@ -67,7 +67,7 @@ create table sys_menu
    menu_url             varchar(500) not null comment '菜单URL',
    menu_icon            varchar(36) comment '菜单图标',
    menu_sort            int(11) not null comment '菜单排序',
-   menu_type            varchar(10) not null comment '菜单类别',
+   menu_type            varchar(10) not null comment '菜单类别 ( MENU:菜单  BUTTON:按钮 )',
    perms                varchar(100) not null comment 'shiro权限标识',
    status               char(1) not null comment '菜单状态（ 0:禁止  1:启用 ）',
    create_time          datetime comment '创建时间',
@@ -129,7 +129,7 @@ create table sys_user
    user_phone           varchar(11) not null comment '用户手机',
    user_qq              varchar(20) comment '用户QQ',
    user_head_url        varchar(200) comment '用户头像',
-   user_sex             char(1) comment '用户性别（0：男，2：女）',
+   user_sex             char(1) comment '用户性别（ 0:男  1:女  2:保密 ）',
    user_signature       varchar(200) comment '用户个性签名',
    status               char(1) comment '用户状态（ 0:禁止  1:启用 ）',
    create_time          datetime comment '创建时间',
@@ -319,10 +319,10 @@ create table y_suggest
    suggest_id           int(11) not null auto_increment comment '意见ID',
    suggest_content      text not null comment '意见内容',
    user_ip              varchar(50) comment 'ip地址',
-   create_user          int(11) comment '创建人',
-   create_time          datetime comment '创建时间',
    suggest_status       char(1) comment '意见状态（ 0:废弃  1:不予理会  3:有兴趣纳入目标  4:采纳正在做  6:已经完成 ）',
    display_status       char(1) comment '显示状态（ 0:禁止  1:启用 ）',
+   create_user          int(11) comment '创建人',
+   create_time          datetime comment '创建时间',
    primary key (suggest_id)
 )
 charset = UTF8;

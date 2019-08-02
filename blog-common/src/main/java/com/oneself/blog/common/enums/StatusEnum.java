@@ -7,8 +7,8 @@ package com.oneself.blog.common.enums;
  * @Version 1.0
  */
 public enum StatusEnum implements BaseEnum {
-    ENABLE("1","启用"),
-    DISABLE("0","禁用")
+    DISABLE("0","禁用"),
+    ENABLE("1","启用")
     ;
 
     private String value;

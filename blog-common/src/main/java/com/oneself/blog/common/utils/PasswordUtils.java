@@ -8,6 +8,8 @@ package com.oneself.blog.common.utils;
 
 import com.oneself.blog.common.constant.CommonConst;
 
+import java.util.UUID;
+
 /**
  * @Describe 密码加密类
  * @Author: liangjiayao

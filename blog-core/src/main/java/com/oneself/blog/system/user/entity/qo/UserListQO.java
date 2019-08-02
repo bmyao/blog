@@ -1,4 +1,4 @@
-package com.oneself.blog.system.user.entity.vo;
+package com.oneself.blog.system.user.entity.qo;
 
 import com.oneself.blog.common.enums.SexEnum;
 import com.oneself.blog.common.enums.StatusEnum;

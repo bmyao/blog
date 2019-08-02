@@ -101,27 +101,24 @@ blog-config:
   timeFormat: yyyy-MM-dd HH:mm:ss
   # 是否开启 AOP 日志，默认开启
   openAopLog: true
-  # 是否开启规则默认启动
-  rule-default-startup: true
 
   shiro:
-    # shiro redis缓存时长，默认1800秒
-    expireIn: 1800
     # session 超时时间，默认1800000毫秒
     sessionTimeout: 1800000
     # rememberMe cookie有效时长，默认86400秒，即一天
     cookieTimeout: 86400
     # 免认证的路径配置，如静态资源，druid监控页面，注册页面，验证码请求等
-    anonUrl: /css/**,/js/**,/fonts/**,/img/**,/druid/**,/user/regist,/gifCode,/,/actuator/**,/test/**,/swagger-ui.html,/webjars/**,/v2/**,/swagger-resources/**
+    anonUrl: /register,/css/**,/js/**,/fonts/**,/img/**,/druid/**,/user/regist,/gifCode,/,/actuator/**,/test/**,/swagger-ui.html,/webjars/**,/v2/**,/swagger-resources/**
     # 登录 url
-    loginUrl: /user/login
+    loginUrl: /login
     # 登录成功后跳转的 url
-    #successUrl: /index
+    successUrl: /index
     # 登出 url
-    #logoutUrl: /user/logout
+    logoutUrl: /logout
     # 未授权跳转 url
     unauthorizedUrl: /403
-    jessionid: business_sessionId
+    # sessionId
+    sessionid: blog_sessionId
 #rocketmq:
 #  groupName: rocketmq
 #  namesrvAddr: 192.168.250.2:9876
