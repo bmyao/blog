@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oneself.blog.suggest.dao.SuggestMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="suggestId" keyColumn="suggest_id" parameterType="com.oneself.blog.suggest.entity.pojo.Suggest">
+        insert into y_suggest
+        (
+            suggest_id,
+            user_ip,
+            create_user,
+            create_time,
+            suggest_status,
+            display_status,
+            suggest_content
+        )
+        values
+        (
+            #{suggestId},
+            #{userIp},
+            #{createUser},
+            #{createTime},
+            #{suggestStatus.value,},
+            #{displayStatus.value,},
+            #{suggestContent}
+        )
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from y_suggest
+        where suggest_id = #{suggestId}
+    </delete>
+
+    <update id="updateById" parameterType="com.oneself.blog.suggest.entity.pojo.Suggest">
+        update y_suggest
+        set user_ip = #{userIp},
+            create_user = #{createUser},
+            create_time = #{createTime},
+            suggest_status = #{suggestStatus.value},
+            display_status = #{displayStatus.value},
+            suggest_content = #{suggestContent}
+        where suggest_id = #{suggestId}
+    </update>
+
+</mapper>

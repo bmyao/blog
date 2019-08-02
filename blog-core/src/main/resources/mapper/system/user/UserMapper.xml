@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oneself.blog.system.user.dao.UserMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="userId" keyColumn="user_id" parameterType="com.oneself.blog.system.user.entity.pojo.User">
+        insert into sys_user
+        (
+            user_code,
+            login_name,
+            login_password,
+            user_name,
+            user_phone,
+            user_qq,
+            user_head_url,
+            user_sex,
+            user_signature,
+            status,
+            create_time
+        )
+        values
+        (
+            #{userCode},
+            #{loginName},
+            #{loginPassword},
+            #{userName},
+            #{userPhone},
+            #{userQq},
+            #{userHeadUrl},
+            #{userSex.value},
+            #{userSignature},
+            #{status.value},
+            #{createTime}
+        )
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from sys_user
+        where user_id = #{userId,jdbcType=INTEGER}
+    </delete>
+
+    <update id="updateById" parameterType="com.oneself.blog.system.user.entity.pojo.User">
+        update sys_user
+        set user_name = #{userName},
+            user_phone = #{userPhone},
+            user_qq = #{userQq},
+            user_head_url = #{userHeadUrl},
+            user_sex = #{userSex.value},
+            user_signature = #{userSignature},
+            update_time = #{updateTime},
+            update_user = #{updateUser}
+        where user_id = #{userId}
+    </update>
+
+    <select id="findListByCondition" parameterType="com.oneself.blog.system.user.entity.qo.UserListQO" resultType="com.oneself.blog.system.user.entity.vo.UserListVO">
+        select
+            su.user_id userId,
+            su.user_code userCode,
+            su.login_name loginName,
+            su.user_name userName,
+            su.user_phone userPhone,
+            su.user_sex userSex,
+            su.status status,
+            su.create_time createTime,
+            su.update_time updateTime,
+            usu.user_name updateUserName
+        from sys_user su
+        left join sys_user usu on usu.user_id = su.update_user
+        <where>
+            <if test="item != null and item != ''">
+                ( su.user_code like CONCAT('%',#{item},'%') or su.user_name like CONCAT('%',#{item},'%') )
+            </if>
+            <if test="userSex != null">
+                and su.user_sex = #{userSex.value}
+            </if>
+            <if test="status != null">
+                and su.status = #{status.value}
+            </if>
+        </where>
+    </select>
+
+    <select id="findById" parameterType="java.lang.Integer" resultType="com.oneself.blog.system.user.entity.vo.UserInfoVO">
+        select
+            user_id userId,
+            user_code userCode,
+            login_name loginName,
+            user_name userName,
+            user_phone userPhone,
+            user_qq userQq,
+            user_head_url userHeadUrl,
+            user_sex userSex,
+            user_signature userSignature
+        from sys_user
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+
+    <select id="findUserByLoginNameAndPasswork" resultType="com.oneself.blog.system.user.entity.dto.LoginUserDTO">
+        select
+            su.user_id userId,
+            su.user_code userCode,
+            su.login_name loginName,
+            su.login_password loginPasswork,
+            su.status status
+        from sys_user su
+        where su.login_name = #{loginName}
+        and su.login_password = #{loginPassword}
+    </select>
+
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oneself.blog.comment.dao.CommentMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="commentId" keyColumn="comment_id" parameterType="com.oneself.blog.comment.entity.pojo.Comment">
+        insert into y_comment
+        (
+            comment_id,
+            parent_id,
+            comment_content,
+            comment_ip,
+            comment_status,
+            belong_user,
+            create_user,
+            create_time
+        )
+        values
+        (
+            #{commentId},
+            #{parentId},
+            #{commentContent},
+            #{commentIp},
+            #{commentStatus.value},
+            #{belongUser},
+            #{createUser},
+            #{createTime}
+        )
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from y_comment
+        where comment_id = #{commentId}
+    </delete>
+
+    <update id="updateById" parameterType="com.oneself.blog.comment.entity.pojo.Comment">
+        update y_comment
+        set comment_content = #{commentContent},
+            comment_ip = #{commentIp},
+            comment_status = #{commentStatus.value},
+            belong_user = #{belongUser},
+            update_user = #{updateUser},
+            update_time = #{updateTime}
+        where comment_id = #{commentId}
+    </update>
+
+</mapper>

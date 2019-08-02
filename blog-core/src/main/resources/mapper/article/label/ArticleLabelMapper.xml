@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oneself.blog.article.label.dao.ArticleLabelMapper">
+
+    <insert id="insert" parameterType="com.oneself.blog.article.label.entity.pojo.ArticleLabel">
+        insert into y_article_label
+        (
+            article_id,
+            label_id,
+            create_user,
+            create_time
+        )
+        values
+        (
+            #{articleId},
+            #{labelId},
+            #{createUser},
+            #{createTime}
+        )
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from y_article_label
+        where article_label_id = #{articleLabelId}
+    </delete>
+
+</mapper>

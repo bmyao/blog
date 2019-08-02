@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oneself.blog.system.role.dao.RoleMapper">
+
+    <insert id="insert" parameterType="com.oneself.blog.system.role.entity.pojo.Role">
+        insert into sys_role
+        (
+            role_code,
+            role_name,
+            role_type,
+            role_status,
+            create_user,
+            create_time,
+            update_user,
+            update_time
+        )
+        values
+        (
+            #{roleCode,jdbcType=VARCHAR},
+            #{roleName,jdbcType=VARCHAR},
+            #{roleType,jdbcType=CHAR},
+            #{roleStatus,jdbcType=CHAR},
+            #{createUser,jdbcType=INTEGER},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{updateUser,jdbcType=INTEGER},
+            #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+      delete from sys_role
+      where role_id = #{roleId,jdbcType=INTEGER}
+    </delete>
+
+    <update id="updateById" parameterType="com.oneself.blog.system.role.entity.pojo.Role">
+        update sys_role
+        set role_name = #{roleName,jdbcType=VARCHAR},
+            role_type = #{roleType,jdbcType=CHAR},
+            update_user = #{updateUser,jdbcType=INTEGER},
+            update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where role_id = #{roleId,jdbcType=INTEGER}
+    </update>
+
+    <select id="findListByCondition" parameterType="com.oneself.blog.system.role.entity.qo.RoleListQO" resultType="com.oneself.blog.system.role.entity.vo.RoleListVO">
+        select
+            sr.role_id,
+            sr.role_code,
+            sr.role_name,
+            sr.role_type,
+            sr.role_status,
+            csu.user_name,
+            sr.create_time,
+            usu.user_name,
+            sr.update_time
+        from sys_role sr
+        left join sys_user csu on csu.user_id = sr.create_user
+        left join sys_user usu on usu.user_id = sr.update_user
+        <where>
+            <if test="item != null and item != ''">
+                ( su.role_code like CONCAT('%',#{item},'%') or su.role_name like CONCAT('%',#{item},'%') )
+            </if>
+            <if test="roleType != null">
+                and su.role_type = #{roleType.value}
+            </if>
+            <if test="roleStatus != null">
+                and su.role_status = #{roleStatus.value}
+            </if>
+        </where>
+    </select>
+
+    <select id="findRolesByUserId" parameterType="java.lang.Integer" resultType="com.oneself.blog.system.role.entity.dto.LoginRoleDTO">
+        select
+            sr.role_id roleId,
+            sr.role_code roleCode,
+            sr.role_name roleName,
+            sr.role_type roleType
+        from sys_role sr
+        inner join sys_user_role sur on sur.role_id = sr.role_id
+        where sur.user_id = #{userId}
+        and sr.role_status = 1
+    </select>
+
+</mapper>

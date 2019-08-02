@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oneself.blog.article.article.dao.ArticleMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="articleId" keyColumn="article_id" parameterType="com.oneself.blog.article.article.entity.pojo.Article">
+        insert into y_article
+        (
+            article_code,
+            article_title,
+            article_cover_url,
+            article_description,
+            article_content,
+            category_id,
+            recommend,
+            recommend_sort,
+            publish_status,
+            create_user,
+            create_time
+        )
+        values
+        (
+            #{articleCode},
+            #{articleTitle},
+            #{articleCoverUrl},
+            #{articleDescription},
+            #{articleContent},
+            #{categoryId},
+            #{recommend},
+            #{recommendSort},
+            #{publishStatus},
+            #{createUser},
+            #{createTime}
+        )
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from y_article
+        where article_id = #{articleId}
+    </delete>
+
+    <update id="updateById" parameterType="com.oneself.blog.article.article.entity.pojo.Article">
+        update y_article
+        set article_code = #{articleCode},
+            article_title = #{articleTitle},
+            article_cover_url = #{articleCoverUrl},
+            article_description = #{articleDescription},
+            article_content = #{articleContent},
+            category_id = #{categoryId},
+            recommend = #{recommend},
+            recommend_sort = #{recommendSort},
+            publish_status = #{publishStatus},
+            update_user = #{updateUser},
+            update_time = #{updateTime}
+        where article_id = #{articleId}
+    </update>
+
+</mapper>

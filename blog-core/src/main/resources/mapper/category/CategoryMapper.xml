@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oneself.blog.category.dao.CategoryMapper">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="categoryId" keyColumn="category_id" parameterType="com.oneself.blog.category.entity.pojo.Category">
+
+        insert into y_category
+        (
+          parent_id,
+          category_name,
+          category_sort,
+          category_status,
+          create_user,
+          create_time
+        )
+        values
+        (
+          #{parentId},
+          #{categoryName},
+          #{categorySort},
+          #{categoryStatus.value},
+          #{createUser},
+          #{createTime}
+        )
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+      delete from y_category
+      where category_id = #{categoryId}
+    </delete>
+
+    <update id="updateById" parameterType="com.oneself.blog.category.entity.pojo.Category">
+        update y_category
+        set parent_id = #{parentId},
+            category_name = #{categoryName},
+            category_sort = #{categorySort},
+            category_status = #{categoryStatus.value},
+            update_user = #{updateUser},
+            update_time = #{updateTime}
+        where category_id = #{categoryId}
+    </update>
+
+</mapper>

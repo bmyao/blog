@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oneself.blog.system.menu.dao.MenuMapper">
+
+    <insert id="insert" parameterType="com.oneself.blog.system.menu.entity.pojo.Menu">
+        insert into sys_menu
+        (
+            menu_code,
+            parent_code,
+            menu_name,
+            button_code,
+            menu_url,
+            menu_icon,
+            menu_sort,
+            menu_type,
+            perms,
+            status,
+            create_time,
+            create_user
+          )
+        values
+        (
+            #{menuCode},
+            #{parentCode},
+            #{menuName},
+            #{buttonCode},
+            #{menuUrl},
+            #{menuIcon},
+            #{menuSort},
+            #{menuType},
+            #{perms},
+            #{status.value},
+            #{createTime},
+            #{createUser}
+        )
+    </insert>
+
+    <delete id="deleteByCode" parameterType="java.lang.String">
+        delete from sys_menu
+        where menu_code = #{menuCode}
+    </delete>
+
+    <update id="updateByCode" parameterType="com.oneself.blog.system.menu.entity.pojo.Menu">
+        update sys_menu
+        set parent_code = #{parentCode},
+            menu_name = #{menuName},
+            button_code = #{buttonCode},
+            menu_url = #{menuUrl},
+            menu_icon = #{menuIcon},
+            menu_sort = #{menuSort},
+            menu_type = #{menuType},
+            perms = #{perms},
+            update_time = #{updateTime},
+            update_user = #{updateUser}
+        where menu_code = #{menuCode}
+    </update>
+
+    <update id="updateStatus" parameterType="com.oneself.blog.system.menu.entity.pojo.Menu">
+        update sys_menu
+        set status = #{status.value},
+            update_time = #{updateTime},
+            update_user = #{updateUser}
+        where menu_code = #{menuCode}
+    </update>
+
+    <select id="findListByCondition" parameterType="com.oneself.blog.system.menu.entity.qo.MenuListQO" resultType="com.oneself.blog.system.menu.entity.dto.MenuListDTO">
+        select
+            sm.menu_code menuCode,
+            sm.menu_name menuName,
+            sm.parent_code parentCode,
+            psm.menu_name parentName,
+            sm.button_code buttonCode,
+            sm.menu_url menuUrl,
+            sm.menu_icon menuIcon,
+            sm.menu_sort menuSort,
+            sm.menu_type menuType,
+            sm.perms perms,
+            sm.status status,
+            sm.create_time createTime,
+            csu.user_name createUserName,
+            sm.update_time updateTime,
+            usu.user_name updateUserName
+        from sys_menu sm
+        left join sys_menu psm on psm.menu_code = sm.parent_code
+        left join sys_user csu on csu.user_id = sm.create_user
+        left join sys_user usu on usu.user_id = sm.update_user
+        <where>
+            <if test="item != null and item != ''">
+              ( sm.menu_code like CONCAT('%',#{item},'%') or sm.menu_name like CONCAT('%',#{item},'%') )
+            </if>
+            <if test="menuType != null">
+              and sm.menu_type = #{menuType.value}
+            </if>
+            <if test="status != null">
+              and sm.status = #{status.value}
+            </if>
+        </where>
+    </select>
+
+    <select id="findMenusByUserId" parameterType="java.lang.Integer" resultType="com.oneself.blog.system.menu.entity.dto.LoginMenuDTO">
+        select
+            sm.menu_code menuCode,
+            sm.menu_name menuName,
+            sm.parent_code parentCode,
+            sm.button_code buttonCode,
+            sm.menu_url menuUrl,
+            sm.menu_icon menuIcon,
+            sm.menu_sort menuSort,
+            sm.menu_type menuType,
+            sm.perms perms
+        from sys_menu sm
+        inner join sys_role_menu AS srm ON srm.menu_code = sm.menu_code
+        inner join sys_user_role AS sur ON sur.role_id = srm.role_id
+        where sur.user_id = #{userId}
+        and sm.status = 1
+    </select>
+
+</mapper>

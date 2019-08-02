@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oneself.blog.label.dao.LabelMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="labelId" keyColumn="label_id" parameterType="com.oneself.blog.label.entity.pojo.Label">
+        insert into y_label
+        (
+            label_code,
+            label_name,
+            lable_status,
+            create_user,
+            create_time
+        )
+        values
+        (
+            #{labelCode},
+            #{labelName},
+            #{lableStatus.value},
+            #{createUser},
+            #{createTime}
+        )
+    </insert>
+
+    <delete id="deleteById" parameterType="integer">
+        delete from y_label
+        where label_id = #{labelId}
+    </delete>
+
+    <update id="updateById" parameterType="integer">
+        update y_label
+        <set>
+            <if test="labelCode != null and labelCode != ''">
+                label_code = #{labelCode},
+            </if>
+            <if test="labelName != null and labelName != ''">
+                label_name = #{labelName},
+            </if>
+            <if test="lableStatus != null">
+                lable_status = #{lableStatus.value},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime}
+            </if>
+        </set>
+        where label_id = #{labelId}
+    </update>
+
+    <select id="findListByCondition" parameterType="com.oneself.blog.label.entity.qo.LabelListQO" resultType="com.oneself.blog.label.entity.vo.LabelListVO">
+        select
+            yl.label_id labelId,
+            yl.label_code labelCode,
+            yl.label_name labelName,
+            yl.lable_status lableStatus,
+            csu.user_name createUserName,
+            yl.create_time createTime,
+            usu.user_name updateUserName,
+            yl.update_time udpateTime
+        from y_label yl
+        left join sys_user csu on csu.user_id = yl.create_user
+        left join sys_user usu on usu.user_id = yl.update_user
+        <where>
+            <if test="lableStatus != null">
+                yl.lable_status = #{lableStatus.value}
+            </if>
+            <if test="item != null and item != ''">
+                and ( yl.label_code like CONCAT('%',#{item},'%') or yl.label_name like CONCAT('%',#{item},'%') )
+            </if>
+        </where>
+    </select>
+
+    <select id="findOption" resultType="com.oneself.blog.label.entity.vo.LabelOptionVO">
+        select
+            yl.label_id labelId,
+            yl.label_code labelCode,
+            yl.label_name labelName
+        from y_label yl
+        where yl.lable_status = 1
+    </select>
+
+
+</mapper>

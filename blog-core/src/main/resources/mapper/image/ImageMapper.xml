@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oneself.blog.image.dao.ImageMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="imageId" keyColumn="image_id" parameterType="com.oneself.blog.image.entity.pojo.Image">
+        insert into y_image
+        (
+            image_id,
+            image_name,
+            image_url,
+            image_description,
+            upload_time,
+            upload_ip,
+            upload_user
+        )
+        values
+        (
+            #{imageId},
+            #{imageName},
+            #{imageUrl},
+            #{imageDescription},
+            #{uploadTime},
+            #{uploadIp},
+            #{uploadUser}
+        )
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from y_image
+        where image_id = #{imageId}
+    </delete>
+
+    <update id="updateById" parameterType="com.oneself.blog.image.entity.pojo.Image">
+        update y_image
+        set image_name = #{imageName},
+            image_url = #{imageUrl},
+            image_description = #{imageDescription},
+            upload_time = #{uploadTime},
+            upload_ip = #{uploadIp},
+            upload_user = #{uploadUser}
+        where image_id = #{imageId}
+    </update>
+
+
+</mapper>
