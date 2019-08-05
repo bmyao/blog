@@ -1,9 +1,10 @@
 package com.oneself.blog.system.user.service.impl;
 
+import com.oneself.blog.common.enums.GenerateCodeEnum;
 import com.oneself.blog.common.enums.StatusEnum;
-import com.oneself.blog.common.utils.GenerateCodeUtils;
 import com.oneself.blog.common.utils.MapperUtils;
 import com.oneself.blog.common.utils.PasswordUtils;
+import com.oneself.blog.system.code.service.CodeService;
 import com.oneself.blog.system.user.dao.UserMapper;
 import com.oneself.blog.system.user.entity.pojo.User;
 import com.oneself.blog.system.user.entity.qo.UserRegisterQO;
@@ -25,6 +26,9 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
 
+    @Resource
+    private CodeService codeService;
+
     /**
      * @Author liangjiayao
      * @Description
@@ -38,8 +42,7 @@ public class UserServiceImpl implements UserService {
         User user = MapperUtils.mapperBean(userRegisterQO, User.class);
         //密码加密
         user.setLoginPassword(PasswordUtils.encrypt(user.getLoginName(), user.getLoginPassword()));
-        //todo 生成编号的方法
-        user.setUserCode(GenerateCodeUtils.generateShortUuid());
+        user.setUserCode(codeService.getCode(GenerateCodeEnum.USER));
         user.setCreateTime(new Date());
         user.setStatus(StatusEnum.ENABLE);
         //新增user

@@ -1,8 +1,10 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2019/8/2 9:54:42                             */
+/* Created on:     2019/8/5 14:53:56                            */
 /*==============================================================*/
 
+
+drop table if exists sys_code;
 
 drop table if exists sys_log;
 
@@ -33,6 +35,24 @@ drop table if exists y_image;
 drop table if exists y_label;
 
 drop table if exists y_suggest;
+
+/*==============================================================*/
+/* Table: sys_code                                              */
+/*==============================================================*/
+create table sys_code
+(
+   code_key             varchar(50) not null comment '编号key值',
+   code_prefix          varchar(10) comment '编号前缀',
+   code_value           bigint(20) comment '编号值',
+   increase_value       int(11) comment '值自增数',
+   suffix_status        char(1) comment '编号后缀状态（0：不加后缀  1：4位随机数后缀  2：编号后缀）',
+   code_suffix          varchar(10) comment '编号后缀',
+   create_time          datetime comment '创建时间',
+   update_time          datetime comment '修改时间',
+   primary key (code_key)
+);
+
+alter table sys_code comment '编号表';
 
 /*==============================================================*/
 /* Table: sys_log                                               */

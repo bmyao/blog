@@ -41,7 +41,7 @@
         </javaTypeResolver>
 
         <!-- 二、指定javabean生成的位置 -->
-        <javaModelGenerator targetPackage="com.oneself.blog.article.article.entity.pojo" targetProject=".\src\main\java">
+        <javaModelGenerator targetPackage="com.oneself.blog.system.code.entity.pojo" targetProject=".\src\main\java">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="true" />
             <!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
@@ -49,7 +49,7 @@
         </javaModelGenerator>
 
         <!-- 三、指定sql映射文件生成的位置 -->
-        <sqlMapGenerator targetPackage="mapper.article.article"  targetProject=".\src\main\resources">
+        <sqlMapGenerator targetPackage="mapper.system.code"  targetProject=".\src\main\resources">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
@@ -63,14 +63,14 @@
                 3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
             注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER
         -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.oneself.blog.article.article.dao" targetProject=".\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.oneself.blog.system.code.dao" targetProject=".\src\main\java">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
         <!-- 五、table指定每个表的生成策略 -->
         <!--配置要逆向解析的数据表，tableName对应表名，domainObjectName对应javaBean名-->
-        <table tableName="y_article" domainObjectName="Article"></table>
+        <table tableName="sys_code" domainObjectName="Code"></table>
 
     </context>
 </generatorConfiguration>
