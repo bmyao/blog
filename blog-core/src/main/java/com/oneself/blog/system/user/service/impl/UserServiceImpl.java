@@ -7,7 +7,7 @@ import com.oneself.blog.common.utils.PasswordUtils;
 import com.oneself.blog.system.code.service.CodeService;
 import com.oneself.blog.system.user.dao.UserMapper;
 import com.oneself.blog.system.user.entity.pojo.User;
-import com.oneself.blog.system.user.entity.qo.UserRegisterQO;
+import com.oneself.blog.system.user.entity.co.UserRegisterCO;
 import com.oneself.blog.system.user.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -37,9 +37,9 @@ public class UserServiceImpl implements UserService {
      * @return void
      **/
     @Override
-    public void registerUser(UserRegisterQO userRegisterQO) {
+    public void registerUser(UserRegisterCO userRegisterCO) {
         //转换类
-        User user = MapperUtils.mapperBean(userRegisterQO, User.class);
+        User user = MapperUtils.mapperBean(userRegisterCO, User.class);
         //密码加密
         user.setLoginPassword(PasswordUtils.encrypt(user.getLoginName(), user.getLoginPassword()));
         user.setUserCode(codeService.getCode(GenerateCodeEnum.USER));

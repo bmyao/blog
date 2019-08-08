@@ -41,7 +41,7 @@
         where role_id = #{roleId,jdbcType=INTEGER}
     </update>
 
-    <select id="findListByCondition" parameterType="com.oneself.blog.system.role.entity.qo.RoleListQO" resultType="com.oneself.blog.system.role.entity.vo.RoleListVO">
+    <select id="findListByCondition" parameterType="com.oneself.blog.system.role.entity.co.RoleListCO" resultType="com.oneself.blog.system.role.entity.vo.RoleListVO">
         select
             sr.role_id,
             sr.role_code,

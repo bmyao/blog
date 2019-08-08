@@ -1,4 +1,4 @@
-package com.oneself.blog.system.user.entity.qo;
+package com.oneself.blog.system.user.entity.co;
 
 import lombok.Data;
 
@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
  * @Version 1.0
  */
 @Data
-public class LoginQO {
+public class LoginCO {
 
     @NotEmpty(message = "账号不能为空")
     private String username;

@@ -48,7 +48,7 @@
         where label_id = #{labelId}
     </update>
 
-    <select id="findListByCondition" parameterType="com.oneself.blog.label.entity.qo.LabelListQO" resultType="com.oneself.blog.label.entity.vo.LabelListVO">
+    <select id="findListByCondition" parameterType="com.oneself.blog.label.entity.co.LabelListCO" resultType="com.oneself.blog.label.entity.vo.LabelListVO">
         select
             yl.label_id labelId,
             yl.label_code labelCode,

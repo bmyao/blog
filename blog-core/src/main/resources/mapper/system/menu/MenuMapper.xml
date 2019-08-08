@@ -63,7 +63,7 @@
         where menu_code = #{menuCode}
     </update>
 
-    <select id="findListByCondition" parameterType="com.oneself.blog.system.menu.entity.qo.MenuListQO" resultType="com.oneself.blog.system.menu.entity.dto.MenuListDTO">
+    <select id="findListByCondition" parameterType="com.oneself.blog.system.menu.entity.co.MenuListCO" resultType="com.oneself.blog.system.menu.entity.dto.MenuListDTO">
         select
             sm.menu_code menuCode,
             sm.menu_name menuName,

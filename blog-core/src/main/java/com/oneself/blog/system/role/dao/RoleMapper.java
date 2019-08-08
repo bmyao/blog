@@ -2,7 +2,7 @@ package com.oneself.blog.system.role.dao;
 
 import com.oneself.blog.system.role.entity.dto.LoginRoleDTO;
 import com.oneself.blog.system.role.entity.pojo.Role;
-import com.oneself.blog.system.role.entity.qo.RoleListQO;
+import com.oneself.blog.system.role.entity.co.RoleListCO;
 import com.oneself.blog.system.role.entity.vo.RoleListVO;
 
 import java.util.List;
@@ -40,10 +40,10 @@ public interface RoleMapper {
      * @Author liangjiayao
      * @Description
      * @Date 2019/7/25 18:12
-     * @Param [roleListQO]
+     * @Param [roleListCO]
      * @return java.util.List<com.oneself.blog.system.role.entity.vo.RoleListVO>
      **/
-    List<RoleListVO> findListByCondition(RoleListQO roleListQO);
+    List<RoleListVO> findListByCondition(RoleListCO roleListCO);
 
     /**
      * @Author liangjiayao

@@ -1,4 +1,4 @@
-package com.oneself.blog.system.user.entity.qo;
+package com.oneself.blog.system.user.entity.co;
 
 import com.oneself.blog.common.enums.SexEnum;
 import com.oneself.blog.common.enums.StatusEnum;
@@ -12,7 +12,7 @@ import lombok.Data;
  * @Version 1.0
  */
 @Data
-public class UserListQO {
+public class UserListCO {
 
     /**
      * 用户编号或者用户名字

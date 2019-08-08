@@ -1,4 +1,4 @@
-package com.oneself.blog.label.entity.qo;
+package com.oneself.blog.label.entity.co;
 
 import com.oneself.blog.common.enums.StatusEnum;
 import lombok.Data;
@@ -10,7 +10,7 @@ import lombok.Data;
  * @Version 1.0
  */
 @Data
-public class LabelListQO {
+public class LabelListCO {
 
     /**
      * 状态（ 0:禁止  1:启用 ）

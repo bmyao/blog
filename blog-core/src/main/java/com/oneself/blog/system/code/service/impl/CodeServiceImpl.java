@@ -34,7 +34,7 @@ public class CodeServiceImpl implements CodeService {
     /**
      * @Author liangjiayao
      * @Description 数据库生成编号
-     * @Date 2019/8/5 18:38
+     * @Date 2019/8/6 10:13
      * @Param [codeEnum]
      * @return java.lang.String
      **/

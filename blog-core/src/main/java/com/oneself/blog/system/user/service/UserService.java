@@ -1,6 +1,6 @@
 package com.oneself.blog.system.user.service;
 
-import com.oneself.blog.system.user.entity.qo.UserRegisterQO;
+import com.oneself.blog.system.user.entity.co.UserRegisterCO;
 
 /**
  * @Describe
@@ -17,5 +17,5 @@ public interface UserService {
      * @Param [userRegisterQO]
      * @return void
      **/
-    void registerUser(UserRegisterQO userRegisterQO);
+    void registerUser(UserRegisterCO userRegisterCO);
 }

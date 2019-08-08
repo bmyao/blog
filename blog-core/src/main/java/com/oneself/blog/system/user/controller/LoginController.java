@@ -3,7 +3,7 @@ package com.oneself.blog.system.user.controller;
 import com.oneself.blog.common.result.Result;
 import com.oneself.blog.common.result.ResultGenerator;
 import com.oneself.blog.common.utils.PasswordUtils;
-import com.oneself.blog.system.user.entity.qo.LoginQO;
+import com.oneself.blog.system.user.entity.co.LoginCO;
 import com.oneself.blog.system.user.entity.vo.LoginUserVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,10 +28,10 @@ public class LoginController {
 
     @ApiOperation(value = "用户登录", notes = "用户登录")
     @PostMapping(value = "/login")
-    public Result login(@Valid @RequestBody LoginQO loginQO) {
-        String username = loginQO.getUsername();
-        String password = loginQO.getPassword();
-        boolean rememberMe = loginQO.getRememberMe();
+    public Result login(@Valid @RequestBody LoginCO loginCO) {
+        String username = loginCO.getUsername();
+        String password = loginCO.getPassword();
+        boolean rememberMe = loginCO.getRememberMe();
         //  AES 加密
         password = PasswordUtils.encrypt(username, password);
         UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);

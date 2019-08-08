@@ -1,4 +1,4 @@
-package com.oneself.blog.system.menu.entity.qo;
+package com.oneself.blog.system.menu.entity.co;
 
 import com.oneself.blog.common.enums.MenuTypeEnum;
 import com.oneself.blog.common.enums.StatusEnum;
@@ -11,7 +11,7 @@ import lombok.Data;
  * @Version 1.0
  */
 @Data
-public class MenuListQO {
+public class MenuListCO {
 
     /**
      * 菜单code或者菜单名称

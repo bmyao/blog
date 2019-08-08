@@ -1,4 +1,4 @@
-package com.oneself.blog.system.user.entity.qo;
+package com.oneself.blog.system.user.entity.co;
 
 import com.oneself.blog.common.enums.SexEnum;
 import lombok.Data;
@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
  * @Version 1.0
  */
 @Data
-public class UserRegisterQO {
+public class UserRegisterCO {
 
     /**
      * 登录账号

@@ -1,7 +1,7 @@
 package com.oneself.blog.label.dao;
 
 import com.oneself.blog.label.entity.pojo.Label;
-import com.oneself.blog.label.entity.qo.LabelListQO;
+import com.oneself.blog.label.entity.co.LabelListCO;
 import com.oneself.blog.label.entity.vo.LabelListVO;
 import com.oneself.blog.label.entity.vo.LabelOptionVO;
 
@@ -40,10 +40,10 @@ public interface LabelMapper {
      * @Author liangjiayao
      * @Description 列表查询
      * @Date 2019/7/24 17:44
-     * @Param [labelListQO]
+     * @Param [labelListCO]
      * @return com.oneself.blog.label.entity.vo.LabelListVO
      **/
-    List<LabelListVO> findListByCondition(LabelListQO labelListQO);
+    List<LabelListVO> findListByCondition(LabelListCO labelListCO);
 
     /**
      * @Author liangjiayao

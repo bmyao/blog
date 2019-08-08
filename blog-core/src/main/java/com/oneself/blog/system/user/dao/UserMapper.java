@@ -3,7 +3,7 @@ package com.oneself.blog.system.user.dao;
 import com.oneself.blog.system.user.entity.dto.LoginUserDTO;
 import com.oneself.blog.system.user.entity.pojo.User;
 import com.oneself.blog.system.user.entity.vo.UserInfoVO;
-import com.oneself.blog.system.user.entity.qo.UserListQO;
+import com.oneself.blog.system.user.entity.co.UserListCO;
 import com.oneself.blog.system.user.entity.vo.UserListVO;
 import org.apache.ibatis.annotations.Param;
 
@@ -42,10 +42,10 @@ public interface UserMapper {
      * @Author liangjiayao
      * @Description
      * @Date 2019/7/25 16:24
-     * @Param [userListQO]
+     * @Param [userListCO]
      * @return java.util.List<com.oneself.blog.system.user.entity.vo.UserListVO>
      **/
-    List<UserListVO> findListByCondition(UserListQO userListQO);
+    List<UserListVO> findListByCondition(UserListCO userListCO);
 
     /**
      * @Author liangjiayao

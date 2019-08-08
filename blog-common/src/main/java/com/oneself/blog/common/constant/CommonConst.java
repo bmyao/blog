@@ -26,21 +26,16 @@ package com.oneself.blog.common.constant;
  * @Version 1.0
  */
 public class CommonConst {
+
     /**
      * 安全密码(UUID生成)，作为盐值用于用户密码的加密
      */
-    public static final String PW_SECURITY_KEY = "929123f8f16454e8b0a531045453e1f1";
+    public static final String PW_SECURITY_KEY = "842513f8f16498s8b0a531045453e1f1";
 
 
     /**
      * 安全密码(UUID生成)，作为盐值用于生成user_token的加密
      */
-    public static final String USER_TOKEN_KEY = "8edf916d3f8f16454e8b0a52dfdo15qhj1";
-
-
-    /**
-     * 新建用户时的默认密码
-     */
-    public static final String DEFAULT_USER_PASSWORD = "123456";
+    public static final String USER_TOKEN_KEY = "8edf16498f8f16454e8b0a52dfdo15qhj1";
 
 }

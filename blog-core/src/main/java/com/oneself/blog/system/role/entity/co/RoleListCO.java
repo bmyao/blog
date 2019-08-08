@@ -1,4 +1,4 @@
-package com.oneself.blog.system.role.entity.qo;
+package com.oneself.blog.system.role.entity.co;
 
 import com.oneself.blog.common.enums.RoleTypeEnum;
 import com.oneself.blog.common.enums.StatusEnum;
@@ -11,7 +11,7 @@ import lombok.Data;
  * @Version 1.0
  */
 @Data
-public class RoleListQO {
+public class RoleListCO {
 
     /**
      * 角色code或者角色名称

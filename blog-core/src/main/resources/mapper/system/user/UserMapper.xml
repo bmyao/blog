@@ -51,7 +51,7 @@
         where user_id = #{userId}
     </update>
 
-    <select id="findListByCondition" parameterType="com.oneself.blog.system.user.entity.qo.UserListQO" resultType="com.oneself.blog.system.user.entity.vo.UserListVO">
+    <select id="findListByCondition" parameterType="com.oneself.blog.system.user.entity.co.UserListCO" resultType="com.oneself.blog.system.user.entity.vo.UserListVO">
         select
             su.user_id userId,
             su.user_code userCode,

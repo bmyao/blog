@@ -2,7 +2,7 @@ package com.oneself.blog.system.user.controller;
 
 import com.oneself.blog.common.result.Result;
 import com.oneself.blog.common.result.ResultGenerator;
-import com.oneself.blog.system.user.entity.qo.UserRegisterQO;
+import com.oneself.blog.system.user.entity.co.UserRegisterCO;
 import com.oneself.blog.system.user.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,8 +28,8 @@ public class UserController {
 
     @ApiOperation(value = "用户注册", notes = "用户注册")
     @PostMapping("/register")
-    public Result register(@Valid @RequestBody UserRegisterQO userRegisterQO){
-        userService.registerUser(userRegisterQO);
+    public Result register(@Valid @RequestBody UserRegisterCO userRegisterCO){
+        userService.registerUser(userRegisterCO);
         return ResultGenerator.genSuccessResult("注册成功");
     }
 }

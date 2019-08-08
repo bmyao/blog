@@ -2,7 +2,7 @@ package com.oneself.blog.system.menu.dao;
 
 import com.oneself.blog.system.menu.entity.dto.MenuListDTO;
 import com.oneself.blog.system.menu.entity.pojo.Menu;
-import com.oneself.blog.system.menu.entity.qo.MenuListQO;
+import com.oneself.blog.system.menu.entity.co.MenuListCO;
 import com.oneself.blog.system.menu.entity.dto.LoginMenuDTO;
 
 import java.util.List;
@@ -49,10 +49,10 @@ public interface MenuMapper {
      * @Author liangjiayao
      * @Description
      * @Date 2019/7/26 17:15
-     * @Param [menuListQO]
+     * @Param [menuListCO]
      * @return java.util.List<com.oneself.blog.system.menu.entity.dto.MenuListDTO>
      **/
-    List<MenuListDTO> findListByCondition(MenuListQO menuListQO);
+    List<MenuListDTO> findListByCondition(MenuListCO menuListCO);
 
     /**
      * @Author liangjiayao
