@@ -51,7 +51,19 @@
         where user_id = #{userId}
     </update>
 
-    <select id="findListByCondition" parameterType="com.oneself.blog.system.user.entity.co.UserListCO" resultType="com.oneself.blog.system.user.entity.vo.UserListVO">
+    <select id="selectUserByLoginNameAndPasswork" resultType="com.oneself.blog.system.user.entity.dto.LoginUserDTO">
+        select
+            su.user_id userId,
+            su.user_code userCode,
+            su.login_name loginName,
+            su.login_password loginPasswork,
+            su.status status
+        from sys_user su
+        where su.login_name = #{loginName}
+        and su.login_password = #{loginPassword}
+    </select>
+
+    <select id="selectListByCondition" parameterType="com.oneself.blog.system.user.entity.co.UserListCO" resultType="com.oneself.blog.system.user.entity.vo.UserListVO">
         select
             su.user_id userId,
             su.user_code userCode,
@@ -78,7 +90,7 @@
         </where>
     </select>
 
-    <select id="findById" parameterType="java.lang.Integer" resultType="com.oneself.blog.system.user.entity.vo.UserInfoVO">
+    <select id="selectById" parameterType="java.lang.Integer" resultType="com.oneself.blog.system.user.entity.vo.UserInfoVO">
         select
             user_id userId,
             user_code userCode,
@@ -91,18 +103,6 @@
             user_signature userSignature
         from sys_user
         where user_id = #{userId,jdbcType=INTEGER}
-    </select>
-
-    <select id="findUserByLoginNameAndPasswork" resultType="com.oneself.blog.system.user.entity.dto.LoginUserDTO">
-        select
-            su.user_id userId,
-            su.user_code userCode,
-            su.login_name loginName,
-            su.login_password loginPasswork,
-            su.status status
-        from sys_user su
-        where su.login_name = #{loginName}
-        and su.login_password = #{loginPassword}
     </select>
 
 </mapper>

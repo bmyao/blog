@@ -6,6 +6,7 @@ import com.oneself.blog.system.user.entity.co.UserRegisterCO;
 import com.oneself.blog.system.user.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,5 +32,11 @@ public class UserController {
     public Result register(@Valid @RequestBody UserRegisterCO userRegisterCO){
         userService.registerUser(userRegisterCO);
         return ResultGenerator.genSuccessResult("注册成功");
+    }
+
+    @ApiOperation(value = "登录用户信息和菜单", notes = "登录用户信息和菜单")
+    @GetMapping("/loginUser")
+    public Result loginUserInfo(){
+        return ResultGenerator.genSuccessResult(userService.findLoginUserAndMenu());
     }
 }

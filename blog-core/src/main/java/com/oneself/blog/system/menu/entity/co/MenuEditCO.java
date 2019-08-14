@@ -1,15 +1,15 @@
-package com.oneself.blog.system.menu.entity.dto;
+package com.oneself.blog.system.menu.entity.co;
 
 import lombok.Data;
 
 /**
  * @Describe
  * @Author: liangjiayao
- * @Date: 2019/7/29 16:34
+ * @Date: 2019/8/10 11:15
  * @Version 1.0
  */
 @Data
-public class LoginMenuDTO {
+public class MenuEditCO {
 
     /**
      * 菜单code
@@ -20,11 +20,6 @@ public class LoginMenuDTO {
      * 菜单名字
      */
     private String menuName;
-
-    /**
-     * 父菜单code
-     */
-    private String parentCode;
 
     /**
      * 按钮标识
@@ -50,4 +45,5 @@ public class LoginMenuDTO {
      * 菜单类别
      */
     private String menuType;
+
 }

@@ -4,7 +4,7 @@ import com.oneself.blog.common.result.Result;
 import com.oneself.blog.common.result.ResultGenerator;
 import com.oneself.blog.common.utils.PasswordUtils;
 import com.oneself.blog.system.user.entity.co.LoginCO;
-import com.oneself.blog.system.user.entity.vo.LoginUserVO;
+import com.oneself.blog.system.user.entity.vo.LoginTokenVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
@@ -42,9 +42,9 @@ public class LoginController {
             }
             //登录
             subject.login(token);
-            LoginUserVO loginUserVO = new LoginUserVO();
-            loginUserVO.setToken(subject.getSession().getId());
-            return ResultGenerator.genSuccessResult(loginUserVO);
+            LoginTokenVO loginTokenVO = new LoginTokenVO();
+            loginTokenVO.setToken(subject.getSession().getId());
+            return ResultGenerator.genSuccessResult(loginTokenVO);
         } catch (UnknownAccountException | IncorrectCredentialsException | LockedAccountException e) {
             return ResultGenerator.genFailResult(e.getMessage());
         } catch (AuthenticationException e) {

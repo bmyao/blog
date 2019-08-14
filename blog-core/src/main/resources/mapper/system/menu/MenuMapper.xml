@@ -42,14 +42,12 @@
 
     <update id="updateByCode" parameterType="com.oneself.blog.system.menu.entity.pojo.Menu">
         update sys_menu
-        set parent_code = #{parentCode},
-            menu_name = #{menuName},
+        set menu_name = #{menuName},
             button_code = #{buttonCode},
             menu_url = #{menuUrl},
             menu_icon = #{menuIcon},
             menu_sort = #{menuSort},
             menu_type = #{menuType},
-            perms = #{perms},
             update_time = #{updateTime},
             update_user = #{updateUser}
         where menu_code = #{menuCode}
@@ -63,7 +61,7 @@
         where menu_code = #{menuCode}
     </update>
 
-    <select id="findListByCondition" parameterType="com.oneself.blog.system.menu.entity.co.MenuListCO" resultType="com.oneself.blog.system.menu.entity.dto.MenuListDTO">
+    <select id="selectListByCondition" parameterType="com.oneself.blog.system.menu.entity.co.MenuListCO" resultType="com.oneself.blog.system.menu.entity.vo.MenuListVO">
         select
             sm.menu_code menuCode,
             sm.menu_name menuName,
@@ -97,7 +95,19 @@
         </where>
     </select>
 
-    <select id="findMenusByUserId" parameterType="java.lang.Integer" resultType="com.oneself.blog.system.menu.entity.dto.LoginMenuDTO">
+    <select id="selectAllMenuByEnable" resultType="com.oneself.blog.system.menu.entity.vo.RoleMenuTreeVO">
+        select
+            sm.menu_code menuCode,
+            sm.menu_name menuName,
+            sm.parent_code parentCode,
+            sm.menu_sort menuSort,
+            sm.menu_type menuType
+        from sys_menu sm
+        where sm.status = 1
+        order by sm.menu_sort asc
+    </select>
+
+    <select id="selectMenusByUserId" parameterType="java.lang.Integer" resultType="com.oneself.blog.system.menu.entity.vo.MenuTreeVO">
         select
             sm.menu_code menuCode,
             sm.menu_name menuName,
@@ -106,8 +116,18 @@
             sm.menu_url menuUrl,
             sm.menu_icon menuIcon,
             sm.menu_sort menuSort,
-            sm.menu_type menuType,
-            sm.perms perms
+            sm.menu_type menuType
+        from sys_menu sm
+        inner join sys_role_menu AS srm ON srm.menu_code = sm.menu_code
+        inner join sys_user_role AS sur ON sur.role_id = srm.role_id
+        where sur.user_id = #{userId}
+        and sm.status = 1
+        order by sm.menu_sort asc
+    </select>
+
+    <select id="selectMenuPermsByUserId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select distinct
+            sm.perms
         from sys_menu sm
         inner join sys_role_menu AS srm ON srm.menu_code = sm.menu_code
         inner join sys_user_role AS sur ON sur.role_id = srm.role_id

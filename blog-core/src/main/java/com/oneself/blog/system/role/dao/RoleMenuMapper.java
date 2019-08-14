@@ -23,4 +23,13 @@ public interface RoleMenuMapper {
      **/
     void deleteById(Integer roleId);
 
+    /**
+     * @Author liangjiayao
+     * @Description 角色id查询菜单
+     * @Date 2019/8/14 9:51
+     * @Param [roleId]
+     * @return java.util.List<java.lang.String>
+     **/
+    List<String> selectMenuByRoleId(Integer roleId);
+
 }

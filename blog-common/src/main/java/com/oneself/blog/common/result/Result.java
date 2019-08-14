@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.oneself.blog.common.enums.ResultCodeEnum;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @Describe 统一返回类
  * @Author: liangjiayao
@@ -11,7 +13,7 @@ import lombok.Data;
  * @Version 1.0
  */
 @Data
-public class Result<T> {
+public class Result<T> implements Serializable {
     
     /**
      *  状态枚举

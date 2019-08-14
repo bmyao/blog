@@ -9,7 +9,7 @@ import lombok.Data;
  * @Version 1.0
  */
 @Data
-public class LoginMenuDTO {
+public class RoleMenuDTO {
 
     /**
      * 菜单code
@@ -50,4 +50,9 @@ public class LoginMenuDTO {
      * 菜单类别
      */
     private String menuType;
+
+    /**
+     * shiro权限标识
+     */
+    private String perms;
 }

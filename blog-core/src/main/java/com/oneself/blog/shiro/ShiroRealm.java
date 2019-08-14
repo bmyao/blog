@@ -14,7 +14,6 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -66,11 +65,7 @@ public class ShiroRealm extends AuthorizingRealm {
      *
      * 如果在shiro配置文件中添加了filterChainDefinitionMap.put("/add", "roles[100002]，perms[权限添加]");
      * 就说明访问/add这个链接必须要有 "权限添加" 这个权限和具有 "100002" 这个角色才可以访问
-     * ---------------------
-     * 作者：这个名字想了很久
-     * 来源：CSDN
-     * 原文：https://blog.csdn.net/qq_34021712/article/details/80774649
-     * 版权声明：本文为博主原创文章，转载请附上博文链接！
+     *
      **/
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -95,9 +90,8 @@ public class ShiroRealm extends AuthorizingRealm {
         Set<String> roleSet = roles.stream().map(LoginRoleDTO::getRoleName).collect(Collectors.toSet());
         simpleAuthorizationInfo.setRoles(roleSet);
 
-        // 获取用户权限集-->菜单
-        List<LoginMenuDTO> permissionList = menuMapper.findMenusByUserId(user.getUserId());
-        Set<String> permissionSet = permissionList.stream().map(LoginMenuDTO::getPerms).collect(Collectors.toSet());
+        // 获取用户权限集-->菜单perms
+        Set<String> permissionSet = menuMapper.selectMenuPermsByUserId(user.getUserId());
         simpleAuthorizationInfo.setStringPermissions(permissionSet);
         return simpleAuthorizationInfo;
     }
@@ -120,7 +114,7 @@ public class ShiroRealm extends AuthorizingRealm {
         String loginName = usernamePasswordToken.getUsername();
         String loginPassword = new String(usernamePasswordToken.getPassword());
         //通过账号密码查询user然后判断
-        LoginUserDTO user = userMapper.findUserByLoginNameAndPasswork(loginName, loginPassword);
+        LoginUserDTO user = userMapper.selectUserByLoginNameAndPasswork(loginName, loginPassword);
         if (user == null) {
             throw new UnknownAccountException("用户名或密码错误！");
         }

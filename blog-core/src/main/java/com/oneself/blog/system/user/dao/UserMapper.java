@@ -41,11 +41,20 @@ public interface UserMapper {
     /**
      * @Author liangjiayao
      * @Description
+     * @Date 2019/7/29 17:53
+     * @Param [loginName, loginPassword]
+     * @return com.oneself.blog.system.user.entity.dto.LoginUserDTO
+     **/
+    LoginUserDTO selectUserByLoginNameAndPasswork(@Param("loginName") String loginName , @Param("loginPassword") String loginPassword);
+
+    /**
+     * @Author liangjiayao
+     * @Description
      * @Date 2019/7/25 16:24
      * @Param [userListCO]
      * @return java.util.List<com.oneself.blog.system.user.entity.vo.UserListVO>
      **/
-    List<UserListVO> findListByCondition(UserListCO userListCO);
+    List<UserListVO> selectListByCondition(UserListCO userListCO);
 
     /**
      * @Author liangjiayao
@@ -54,14 +63,5 @@ public interface UserMapper {
      * @Param [userId]
      * @return com.oneself.blog.system.user.entity.vo.UserInfoVO
      **/
-    UserInfoVO findById(Integer userId);
-
-    /**
-     * @Author liangjiayao
-     * @Description
-     * @Date 2019/7/29 17:53
-     * @Param [loginName, loginPassword]
-     * @return com.oneself.blog.system.user.entity.dto.LoginUserDTO
-     **/
-    LoginUserDTO findUserByLoginNameAndPasswork(@Param("loginName") String loginName , @Param("loginPassword") String loginPassword);
+    UserInfoVO selectById(Integer userId);
 }
