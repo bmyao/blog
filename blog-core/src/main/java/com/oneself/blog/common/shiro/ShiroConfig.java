@@ -1,9 +1,9 @@
-package com.oneself.blog.shiro;
+package com.oneself.blog.common.shiro;
 
 import com.oneself.blog.common.config.ShiroSessionManager;
 import com.oneself.blog.common.properties.BlogConfigProperties;
 import com.oneself.blog.common.properties.RedisProperties;
-import com.oneself.blog.common.properties.SpringProperties;
+import com.oneself.blog.common.properties.BlogSpringProperties;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
@@ -14,16 +14,13 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.crazycake.shiro.RedisSessionDAO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.servlet.Filter;
-import java.util.HashMap;
+import javax.annotation.Resource;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -36,11 +33,11 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    @Autowired
+    @Resource
     private BlogConfigProperties blogConfigProperties;
 
-    @Autowired
-    private SpringProperties springProperties;
+    @Resource
+    private BlogSpringProperties blogSpringProperties;
 
     /**
      * @Author liangjiayao
@@ -54,7 +51,7 @@ public class ShiroConfig {
      * Web应用中,Shiro可控制的Web请求必须经过Shiro主过滤器的拦截
      **/
     @Bean("shiroFilter")
-    public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
+    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         //创建一个shiro工厂拦截
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         //获取filters
@@ -107,7 +104,7 @@ public class ShiroConfig {
      * @Description 自定义realm，实现登录校验和权限
      * @Date 2019/7/31 14:51
      * @Param []
-     * @return com.oneself.blog.shiro.ShiroRealm
+     * @return com.oneself.blog.common.shiro.ShiroRealm
      **/
     @Bean
     public ShiroRealm shiroRealm() {
@@ -174,7 +171,7 @@ public class ShiroConfig {
      **/
     @Bean
     public RedisManager redisManager(){
-        RedisProperties redis = springProperties.getRedis();
+        RedisProperties redis = blogSpringProperties.getRedis();
         RedisManager redisManager = new RedisManager();
         redisManager.setHost(redis.getHost());
         redisManager.setPort(redis.getPort());

@@ -3,7 +3,13 @@ server:
   tomcat:
     uri-encoding: utf-8
 
+
 spring:
+  cloud:
+    #nacos的服务发现配置
+    nacos:
+      discovery:
+        server-addr: 192.168.152.101:8848
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.cj.jdbc.Driver
@@ -51,6 +57,7 @@ spring:
   main:
     allow-bean-definition-overriding: true #当遇到同样名字的bean的时候，是否允许覆盖注册到容器
 
+
   redis:
     # Redis数据库索引（默认为0）
     database: 1
@@ -82,8 +89,6 @@ spring:
   cache:
     type:
       redis
-
-
 
 mybatis-plus:
   global-config:

@@ -1,8 +1,7 @@
-package com.oneself.blog.shiro;
+package com.oneself.blog.common.shiro;
 
 import com.oneself.blog.common.enums.StatusEnum;
 import com.oneself.blog.system.menu.dao.MenuMapper;
-import com.oneself.blog.system.menu.entity.dto.LoginMenuDTO;
 import com.oneself.blog.system.role.dao.RoleMapper;
 import com.oneself.blog.system.role.entity.dto.LoginRoleDTO;
 import com.oneself.blog.system.user.dao.UserMapper;

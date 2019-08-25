@@ -8,7 +8,6 @@ import com.oneself.blog.system.code.entity.vo.CodeVO;
 import com.oneself.blog.system.code.service.CodeService;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,7 +1,7 @@
 package com.oneself.blog.common.config;
 
 import com.oneself.blog.common.properties.BlogConfigProperties;
-import com.oneself.blog.common.properties.SpringProperties;
+import com.oneself.blog.common.properties.BlogSpringProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ public class PropertiesConfig {
 
     @Bean
     @ConfigurationProperties(prefix = "spring")
-    public SpringProperties springProperties(){
-        return new SpringProperties();
+    public BlogSpringProperties blogSpringProperties(){
+        return new BlogSpringProperties();
     }
 }

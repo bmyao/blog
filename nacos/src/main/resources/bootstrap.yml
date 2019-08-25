@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: blog-nacos
+  cloud:
+#nacos的服务发现配置
+    nacos:
+      discovery:
+        server-addr: 192.168.152.101:8848
+      config:
+        server-addr: 192.168.152.101:8848
+        file-extension: yml

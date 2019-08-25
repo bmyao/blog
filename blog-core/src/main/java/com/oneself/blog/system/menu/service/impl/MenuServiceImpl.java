@@ -149,7 +149,7 @@ public class MenuServiceImpl implements MenuService {
             for (MenuTreeVO menu : menuTreeVOS) {
                 String id = menu.getMenuCode();
                 if (id.equals(pid)) {
-                    menu.getList().add(menu);
+                    menu.getList().add(menuTreeVO);
                     menu.setChildList(true);
                     return;
                 }
