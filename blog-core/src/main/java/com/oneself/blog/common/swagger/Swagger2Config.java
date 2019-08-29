@@ -1,4 +1,4 @@
-package com.oneself.blog.common.config;
+package com.oneself.blog.common.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

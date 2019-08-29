@@ -1,4 +1,4 @@
-package com.oneself.blog.common.config;
+package com.oneself.blog.common.shiro;
 
 import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;

@@ -3,7 +3,6 @@ server:
   tomcat:
     uri-encoding: utf-8
 
-
 spring:
   cloud:
     #nacos的服务发现配置
@@ -90,10 +89,7 @@ spring:
     type:
       redis
 
-mybatis-plus:
-  global-config:
-    #刷新Mapper，只在开发环境打开
-    refresh: true
+mybatis:
   # mapper xml实现扫描路径
   mapper-locations: classpath*:mapper/**/*.xml,classpath*:mapper/**/**/*.xml,classpath*:mapper/**/**/**/*.xml
   configuration:
@@ -110,33 +106,6 @@ pagehelper:
   #在支持startPage(Object params)方法时，添加参数以根据属性名称配置参数映射为对象的值，可以配置pageNum,pageSize,count,pageSizeZero,reasonable，默认值为pageNum=pageNum;pageSize=pageSize;count=countSql;reasonable=reasonable;pageSizeZero=pageSizeZero
   params: count=countSql
 
-
-# blog-config 配置
-blog-config:
-  # 是否在控制台打印 sql语句
-  showsql: true
-  # 时间类型参数在前端页面的展示格式，默认格式为 yyyy-MM-dd HH:mm:ss
-  timeFormat: yyyy-MM-dd HH:mm:ss
-  # 是否开启 AOP 日志，默认开启
-  openAopLog: true
-
-  shiro:
-    # session 超时时间，默认1800000毫秒
-    sessionTimeout: 1800000
-    # rememberMe cookie有效时长，默认86400秒，即一天
-    cookieTimeout: 86400
-    # 免认证的路径配置，如静态资源，druid监控页面，注册页面，验证码请求等
-    anonUrl: /register,/css/**,/js/**,/fonts/**,/img/**,/druid/**,/user/regist,/gifCode,/,/actuator/**,/test/**,/swagger-ui.html,/webjars/**,/v2/**,/swagger-resources/**
-    # 登录 url
-    loginUrl: /login
-    # 登录成功后跳转的 url
-    successUrl: /index
-    # 登出 url
-    logoutUrl: /logout
-    # 未授权跳转 url
-    unauthorizedUrl: /403
-    # sessionId
-    sessionid: blog_sessionId
 #rocketmq:
 #  groupName: rocketmq
 #  namesrvAddr: 192.168.250.2:9876

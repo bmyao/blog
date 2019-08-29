@@ -1,0 +1,33 @@
+server:
+  port: 8888
+  tomcat:
+    uri-encoding: utf-8
+
+spring:
+  cloud:
+  #nacos的服务发现配置
+    nacos:
+      discovery:
+        server-addr: 192.168.152.101:8848
+
+    gateway:
+      default-filters:
+      routes:
+        - id: blog-core
+          # /info必须使用http进行转发，lb代表从注册中心获取服务，//后面就是服务名字
+          uri: lb://blog-core
+          predicates:
+          # 转发该路径
+          - Path=/core/**
+          # http://localhost:8080/core/*, 必须加上StripPrefix=1，否则访问服务时会带上core,而不是我们期望的去掉core，只保留**部分
+          filters:
+          - StripPrefix=1
+        - id: gateway
+          # /info必须使用http进行转发，lb代表从注册中心获取服务，//后面就是服务名字
+          uri: lb://gateway
+          predicates:
+          # 转发该路径
+          - Path=/gateway/**
+          # http://localhost:8080/core/*, 必须加上StripPrefix=1，否则访问服务时会带上core,而不是我们期望的去掉core，只保留**部分
+          filters:
+          - StripPrefix=1

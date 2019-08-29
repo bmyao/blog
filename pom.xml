@@ -12,7 +12,7 @@
     <modules>
         <module>blog-common</module>
         <module>blog-core</module>
-        <module>nacos</module>
+        <module>gateway</module>
     </modules>
 
     <parent>
@@ -34,18 +34,10 @@
 
     <dependencies>
 
-        <!-- web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring-boot.version}</version>
-        </dependency>
-
         <!--单元测试包-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>${spring-boot.version}</version>
         </dependency>
 
     </dependencies>
@@ -63,6 +55,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>${nacos.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

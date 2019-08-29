@@ -1,9 +1,7 @@
 package com.oneself.blog.common.shiro;
 
-import com.oneself.blog.common.config.ShiroSessionManager;
-import com.oneself.blog.common.properties.BlogConfigProperties;
-import com.oneself.blog.common.properties.RedisProperties;
-import com.oneself.blog.common.properties.BlogSpringProperties;
+import com.oneself.blog.common.constant.RedisConnectionConst;
+import com.oneself.blog.common.constant.ShiroConst;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
@@ -20,7 +18,6 @@ import org.crazycake.shiro.RedisSessionDAO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.Resource;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -32,12 +29,6 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
-
-    @Resource
-    private BlogConfigProperties blogConfigProperties;
-
-    @Resource
-    private BlogSpringProperties blogSpringProperties;
 
     /**
      * @Author liangjiayao
@@ -61,15 +52,15 @@ public class ShiroConfig {
         // 设置 securityManager
         shiroFilter.setSecurityManager(securityManager);
         // 登录的 url
-        shiroFilter.setLoginUrl(blogConfigProperties.getShiro().getLoginUrl());
+        shiroFilter.setLoginUrl(ShiroConst.LOGIN_URL);
         // 登录成功后跳转的 url
-        shiroFilter.setSuccessUrl(blogConfigProperties.getShiro().getSuccessUrl());
+        shiroFilter.setSuccessUrl(ShiroConst.SUCCESS_URL);
         // 未授权 url
-        shiroFilter.setUnauthorizedUrl(blogConfigProperties.getShiro().getUnauthorizedUrl());
+        shiroFilter.setUnauthorizedUrl(ShiroConst.UNAUTHORIZED_URL);
 
         Map<String, String> filterMap = new LinkedHashMap<>();
         // 设置免认证 url
-        String[] anonUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(blogConfigProperties.getShiro().getAnonUrl(), ",");
+        String[] anonUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(ShiroConst.ANON_URL, ",");
         for (String url : anonUrls) {
             filterMap.put(url, "anon");
         }
@@ -139,7 +130,7 @@ public class ShiroConfig {
         // 设置 cookie 名称，对应 login.html 页面的 <input type="checkbox" name="rememberMe"/>
         SimpleCookie cookie = new SimpleCookie("platform_rememberMe");
         // 设置 cookie 的过期时间，单位为秒，这里为一天
-        cookie.setMaxAge(blogConfigProperties.getShiro().getCookieTimeout());
+        cookie.setMaxAge(ShiroConst.COOKIE_TIMEOUT);
         cookie.setHttpOnly(false);
         return cookie;
     }
@@ -171,14 +162,13 @@ public class ShiroConfig {
      **/
     @Bean
     public RedisManager redisManager(){
-        RedisProperties redis = blogSpringProperties.getRedis();
         RedisManager redisManager = new RedisManager();
-        redisManager.setHost(redis.getHost());
-        redisManager.setPort(redis.getPort());
-        if (StringUtils.isNotBlank(redis.getPassword())) {
-            redisManager.setPassword(redis.getPassword());
+        redisManager.setHost(RedisConnectionConst.HOST);
+        redisManager.setPort(RedisConnectionConst.PORT);
+        if (StringUtils.isNotBlank(RedisConnectionConst.PASSWORD)) {
+            redisManager.setPassword(RedisConnectionConst.PASSWORD);
         }
-        redisManager.setTimeout(redis.getTimeout());
+        redisManager.setTimeout(RedisConnectionConst.TIME_OUT);
         return redisManager;
     }
 
@@ -195,7 +185,7 @@ public class ShiroConfig {
         sessionManager.setSessionIdCookie(getSessionIdCookie());
         sessionManager.setSessionDAO(redisSessionDAO());
         // 设置session超时
-        sessionManager.setGlobalSessionTimeout(blogConfigProperties.getShiro().getSessionTimeout());
+        sessionManager.setGlobalSessionTimeout(ShiroConst.SESSION_TIMEOUT);
         return sessionManager;
     }
 
@@ -208,7 +198,7 @@ public class ShiroConfig {
      **/
     @Bean(name="sessionIdCookie")
     public SimpleCookie getSessionIdCookie(){
-        SimpleCookie simpleCookie = new SimpleCookie(blogConfigProperties.getShiro().getSessionid());
+        SimpleCookie simpleCookie = new SimpleCookie(ShiroConst.SESSION_ID);
         return simpleCookie;
     }
 
